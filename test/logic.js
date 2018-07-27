@@ -27,9 +27,9 @@ chai.should();
 chai.use(require('chai-as-promised'));
 
 const namespace = 'org.mefydemo.com';
-const assetType = 'SampleAsset';
+const assetType = 'Pharmacy';
 const assetNS = namespace + '.' + assetType;
-const participantType = 'SampleParticipant';
+const participantType = 'User';
 const participantNS = namespace + '.' + participantType;
 
 describe('#' + namespace, () => {

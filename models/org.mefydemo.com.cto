@@ -18,25 +18,63 @@
 
 namespace org.mefydemo.com
 
-participant SampleParticipant identified by participantId {
-  o String participantId
-  o String firstName
-  o String lastName
+/** PARTICIPANT USER MODEL */
+participant User identified by phoneNumber {
+  o String userId 
+  o Role role 
+  o String name 
+  o String phoneNumber
+  o UserPharmacy[] pharmacy 
+   
 }
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  --> SampleParticipant owner
-  o String value
+/*** AN ENUMERATED TYPE FOR USER ROLE FIELD */
+enum Role {
+  o admin
+  o aacountant
+  o assistant
 }
+
+/* PHARMACY ASSEST MODEL FEILDS*/
+asset Pharmacy identified by pharmacyId {
+  o String pharmacyId 
+  o Address address optional
+  o String pharmacyName 
+  o String primaryContact 
+  o String alternateContact optional
+  o String email
+  o String gstNo 
+  o String degreeFile
+  o String drugLicense
+  o String tradeLicense
+
+}
+
+/**  ADDRESS FIELD FOR PHARMACY  */
+ concept Address {
+  o String street
+  o String city 
+  o String country
+  o String zipcode
+}
+
+/* CREATE OBJECT FOR PHARMACY*/
+ concept UserPharmacy {
+  o String role 
+  --> Pharmacy pharmacyId
+}
+
+
+
+
+
 
 transaction SampleTransaction {
-  --> SampleAsset asset
   o String newValue
 }
 
 event SampleEvent {
-  --> SampleAsset asset
   o String oldValue
   o String newValue
 }
+

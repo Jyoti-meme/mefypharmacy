@@ -17,7 +17,7 @@
  */
 rule EverybodyCanReadEverything {
     description: "Allow all participants read access to all resources"
-    participant: "org.mefydemo.com.SampleParticipant"
+    participant: "org.mefydemo.com.User"
     operation: READ
     resource: "org.mefydemo.com.*"
     action: ALLOW
@@ -25,7 +25,7 @@ rule EverybodyCanReadEverything {
 
 rule EverybodyCanSubmitTransactions {
     description: "Allow all participants to submit transactions"
-    participant: "org.mefydemo.com.SampleParticipant"
+    participant: "org.mefydemo.com.User"
     operation: CREATE
     resource: "org.mefydemo.com.SampleTransaction"
     action: ALLOW
@@ -33,9 +33,9 @@ rule EverybodyCanSubmitTransactions {
 
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
-    participant(p): "org.mefydemo.com.SampleParticipant"
+    participant(p): "org.mefydemo.com.User"
     operation: ALL
-    resource(r): "org.mefydemo.com.SampleAsset"
+    resource(r): "org.mefydemo.com.Pharmacy"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
